@@ -1,162 +1,82 @@
+
+
+
 <!DOCTYPE html>
 <html lang="EN">
 <head>
   <meta charset="utf-8">
   <title>Dashboard 7</title>
-  <link rel="stylesheet" type="text/css" href="dc.css" />
-  <!-- <link rel="stylesheet" type="text/css" href="../../bootstrap.css" /> -->
+  <link rel="stylesheet" type="text/css" href="https://dc-d3.netlify.app/dc.css" />
   <style>
-    body, html {
-      height: 100%;
-      margin: 0;
-      padding: 0;
-    }
-    div {
-      -webkit-box-sizing: border-box;
-      -moz-box-sizing: border-box;
-      box-sizing: border-box;
-    }
-
-    td {
-      border: 1px solid gainsboro;
-    }
-
-    .info {
-      background-color: pink;
-    }
-
-
-    div.row {
-        display: block;
-        height: 100%;
-        width: 100%;
-    }
-
-    div.column {
-      width: 33%;
-      height: 100%;
-      display: block;
-      float: left;
-      /*border:1px solid blue;*/
-    }
-
-    div.column div.subColumn {
-      display: block;
-      height: 50%;
-      width: 50%;
-      float: left;
-    }
-
-    div.column div.subRow {
-      display: block;
-      height: 50%;
-      width: 100%;
-      float: left;
-      margin-top: 20px;
-    }
-
-    div.subRow2 {
-      /*background-color: pink;*/
-      display: block;
-      height: 15%;
-      margin-top: 8%;
-      font-size: 3em;
-      width: 100%;
-    }
-
-    div.dc-data-count {
-      text-align: center;
-      display: block;
-      width: 100%;
-      height: 5%;
-    }
-
-
-
-    h2 {
-      margin-top: 20px;
-      text-align: center;
-    }
-
-    table {
-        border-collapse: collapse;
-        margin: 0 auto;
-        margin-top: 45px;
-    }
-
-    table thead tr,
-    table tbody tr {
-        border-bottom: 1px solid gainsboro;
-        line-height: 2;
-    }
-
-    table tbody tr:hover {
-        background-color: lightblue;
-        cursor: pointer;
-    }
-
-    table thead tr {
-      border-top: 1px solid gainsboro;
-      background-color: steelblue;
-      line-height: 2;
-      color: white;
-    }
-
-    table tbody tr td,
-    table thead tr td {
-      width: 20%;
-      text-align: center;
-
-    }
+    
 
 
   </style>
 </head>
 <body>
 
-  <div class="row">
-    <div class="column" >
-      <div class="subColumn" id="qty-chart">
-        <h2>Quantity</h2>
+ <div   class="uk-child-width-1-1@l uk-grid-expand" uk-grid>
+ 
+      <div id="total-chart">
+        <h2>Load Time</h2>
         <span class="reset" style="display: none;">Range: <span class="filter"></span></span>
         <a class="reset" style="display:none" href="javascript:pieChart.filterAll(); dc.redrawAll();">reset</a>
-      </div>
-      <div class="subColumn" id="type-chart">
-        <h2>Type</h2>
+ 
+
+</div>
+
+    <div  class="uk-child-width-1-1@l uk-grid-expand" uk-grid id="type-chart">
+        <h2>Search Engine</h2>
         <span class="reset" style="display: none;">Range: <span class="filter"></span></span>
         <a class="reset" style="display:none" href="javascript:rowChart.filterAll(); dc.redrawAll();">reset</a>
       </div>
 
-      <div class="subRow" id="total-chart">
+
+   <div  class="uk-child-width-1-1@l uk-grid-expand" uk-grid id="scatter-plot">
+        <h2>Query Total</h2>
+        <span class="reset" style="display: none;">Range: <span class="filter"></span></span>
+ 
+   </div>
+
+      <a class="reset" style="display:none" href="javascript:scatterPlot.filterAll(); dc.redrawAll();">reset</a>
+
+      <div id="number-display" >Queries: </div>
+
+      <div  class="uk-child-width-1-1@l uk-grid-expand" uk-grid id="total-chart">
         <h2>Total over time</h2>
         <span class="reset" style="display: none;">Range: <span class="filter"></span></span>
         <a class="reset" style="display:none" href="javascript:lineChart.filterAll(); dc.redrawAll();">reset</a>
       </div>
+  
+  
 
+  
+  
     </div>
 
-    <div class="column" id="scatter-plot">
-      <h2>Total-tip</h2>
-      <span class="reset" style="display: none;">Range: <span class="filter"></span></span>
-      <a class="reset" style="display:none" href="javascript:scatterPlot.filterAll(); dc.redrawAll();">reset</a>
 
-      <div id="number-display" class="subRow2">Total spend: </div>
+  <div  class="uk-child-width-1-1@l uk-grid-expand" uk-grid>
+    <h2>Query Total</h2>
+ <div class='dc-data-count'>
+      <span class='filter-count'></span> selected out of <span class='total-count'></span> records.
+      <a href="javascript:dc.filterAll(); dc.renderAll();">Reset All</a>
     </div>
 
-    <div class="column">
-      <h2>Transactions</h2>
-      <div class='dc-data-count'>
-        <span class='filter-count'></span> selected out of <span class='total-count'></span> records.
-        <a href="javascript:dc.filterAll(); dc.renderAll();">Reset All</a>
-      </div>
-      <table id="payment-table"></table>
-    </div>
+    <table class="uk-table " id="payment-table"></table>
   </div>
 
-  <script type="text/javascript" src="d3.js"></script>
-  <script type="text/javascript" src="crossfilter.js"></script>
-  <script type="text/javascript" src="dc_beta32.js"></script>
-  <script type="text/javascript" src="colorbrewer.js"></script>
+  <div>
+
+  
+
+
+
+
+
+  <script type="text/javascript" src="https://dc-d3.netlify.app/d3.js"></script>
+  <script type="text/javascript" src="https://dc-d3.netlify.app/crossfilter.js"></script>
+  <script type="text/javascript" src="https://dc-d3.netlify.app/dc_beta32.js"></script>
+  <script type="text/javascript" src="https://dc-d3.netlify.app/colorbrewer.js"></script>
 
   <script type="text/javascript">
 
@@ -169,18 +89,18 @@
   }
 
   var data = [
-  {date: "2011-11-14T16:17:54Z", quantity: 2, total: 190, tip: 100, type: "tab"},
-  {date: "2011-11-14T16:20:19Z", quantity: 2, total: 190, tip: 100, type: "tab"},
-  {date: "2011-11-14T16:28:54Z", quantity: 1, total: 300, tip: 200, type: "visa"},
-  {date: "2011-11-14T16:30:43Z", quantity: 2, total: 90, tip: 0, type: "tab"},
-  {date: "2011-11-14T16:48:46Z", quantity: 2, total: 90, tip: 0, type: "tab"},
-  {date: "2011-11-14T16:53:41Z", quantity: 2, total: 90, tip: 0, type: "tab"},
-  {date: "2011-11-14T16:54:06Z", quantity: 1, total: 100, tip: 0, type: "cash"},
-  {date: "2011-11-14T16:58:03Z", quantity: 2, total: 90, tip: 0, type: "tab"},
-  {date: "2011-11-14T17:07:21Z", quantity: 2, total: 90, tip: 0, type: "tab"},
-  {date: "2011-11-14T17:22:59Z", quantity: 2, total: 90, tip: 0, type: "tab"},
-  {date: "2011-11-14T17:25:45Z", quantity: 2, total: 200, tip: 0, type: "cash"},
-  {date: "2011-11-14T17:29:52Z", quantity: 1, total: 200, tip: 100, type: "visa"}
+  {date: "2011-11-14T16:17:54Z", quantity: 2, total: 190, query: 100, type: "google"},
+  {date: "2011-11-14T16:20:19Z", quantity: 2, total: 190, query: 100, type: "google"},
+  {date: "2011-11-14T16:28:54Z", quantity: 1, total: 300, query: 200, type: "bing"},
+  {date: "2011-11-14T16:30:43Z", quantity: 2, total: 90, query: 0, type: "youtube"},
+  {date: "2011-11-14T16:48:46Z", quantity: 2, total: 90, query: 0, type: "bing"},
+  {date: "2011-11-14T16:53:41Z", quantity: 2, total: 90, query: 0, type: "google"},
+  {date: "2011-11-14T16:54:06Z", quantity: 1, total: 100, query: 0, type: "bing"},
+  {date: "2011-11-14T16:58:03Z", quantity: 2, total: 90, query: 0, type: "walmart"},
+  {date: "2011-11-14T17:07:21Z", quantity: 2, total: 90, query: 0, type: "bing"},
+  {date: "2011-11-14T17:22:59Z", quantity: 2, total: 90, query: 0, type: "youtube"},
+  {date: "2011-11-14T17:25:45Z", quantity: 2, total: 200, query: 0, type: "yelp"},
+  {date: "2011-11-14T17:29:52Z", quantity: 1, total: 200, query: 100, type: "yelp"}
 ];
 
 data.forEach(function(d){
@@ -207,7 +127,7 @@ var qtyDimension = facts.dimension(function(d){ return d.quantity; });
 var qtyGroup = qtyDimension.group();
 
 //scatter
-var scatterDimension = facts.dimension(function(d){ return [d.total,d.tip]; });
+var scatterDimension = facts.dimension(function(d){ return [d.total,d.query]; });
 var scatterGroup = scatterDimension.group();
 
 //row
@@ -235,8 +155,8 @@ var dataTable = dc.dataTable("#payment-table")
       .group(function(d){ return d.type; })
       .columns([{label:'Time',format: function(d){ return d.date.getHours()+':'+d.date.getMinutes(); }},
                 'quantity',
+                'query',
                 'total',
-                'tip',
                 'type'])
       .sortBy(function(d){ return d.date; })
       .order(d3.ascending);
@@ -245,7 +165,7 @@ var dataTable = dc.dataTable("#payment-table")
       // });
 
 var pieChart = dc.pieChart("#qty-chart")
-      .height(300)
+      .height(800)
       .radius(100)
       // .filter(1)
       .dimension(qtyDimension)
@@ -254,7 +174,7 @@ var pieChart = dc.pieChart("#qty-chart")
 // typeDimension.filter(['cash','tac']);
 
 var rowChart = dc.rowChart("#type-chart")
-      .height(300)
+      .height(800)
       .group(typeGroup)
       // .filter([['cash','tab']])
       .dimension(typeDimension);
@@ -262,7 +182,7 @@ var rowChart = dc.rowChart("#type-chart")
 // scatterDimension.filter(function(d){ return d[1]==0; });
 
 var scatterPlot = dc.scatterPlot("#scatter-plot")
-    .width(450)
+    .width(800)
     .height(350)
     .margins({top:40,bottom:60,right:80,left:60})
     .dimension(scatterDimension)
@@ -281,16 +201,16 @@ var scatterPlot = dc.scatterPlot("#scatter-plot")
     .excludedOpacity(0.2)
     .colorAccessor(function(d){ return d.value; })
     .clipPadding(70)
-    .yAxisLabel("Tip size")
+    .yAxisLabel("Query")
     .x(d3.scale.linear().domain([0,300]));
 
 var lineChart = dc.lineChart("#total-chart")
-    .width(450)
-    .height(200)
+    .width(800)
+    .height(400)
     .margins({top:10,bottom:30,right:10,left:70})
     .dimension(dateDimension)
     .group(dateGroup,"total spend")
-    .yAxisLabel("Transaction spend")
+    .yAxisLabel("click and drag for date range")
     .renderHorizontalGridLines(true)
     .renderArea(true)
     .legend(dc.legend().x(1200).y(5).itemHeight(12).gap(5))
